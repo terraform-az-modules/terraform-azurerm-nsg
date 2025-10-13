@@ -1,3 +1,6 @@
+##-----------------------------------------------------------------------------
+## Outputs
+##-----------------------------------------------------------------------------
 output "id" {
   value       = try(azurerm_network_security_group.nsg[0].id, null)
   description = "The network security group configuration ID."
@@ -6,11 +9,6 @@ output "id" {
 output "name" {
   value       = try(azurerm_network_security_group.nsg[0].name, null)
   description = "The name of the network security group."
-}
-
-output "tags" {
-  value       = module.labels.tags
-  description = "The tags assigned to the resource."
 }
 
 output "network_watcher_name" {

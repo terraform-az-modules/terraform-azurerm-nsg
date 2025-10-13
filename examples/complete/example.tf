@@ -2,37 +2,31 @@ provider "azurerm" {
   features {}
 }
 
-locals {
-  name        = "app"
-  environment = "test"
-  label_order = ["name", "environment"]
-}
-
 ##-----------------------------------------------------------------------------
 ## Resource Group module call
 ## Resource group in which all resources will be deployed.
 ##-----------------------------------------------------------------------------
 module "resource_group" {
-  source      = "clouddrove/resource-group/azure"
-  version     = "1.0.2"
-  name        = local.name
-  environment = local.environment
-  label_order = local.label_order
-  location    = "canadacentral"
+  source      = "terraform-az-modules/resource-group/azure"
+  version     = "1.0.0"
+  name        = "core"
+  environment = "dev"
+  location    = "centralus"
+  label_order = ["name", "environment", "location"]
 }
 
-##-----------------------------------------------------------------------------
-## Virtual Network module call.
-##-----------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# Virtual Network
+# ------------------------------------------------------------------------------
 module "vnet" {
-  depends_on          = [module.resource_group]
-  source              = "clouddrove/vnet/azure"
-  version             = "1.0.4"
-  name                = local.name
-  environment         = local.environment
+  source              = "terraform-az-modules/vnet/azure"
+  version             = "1.0.0"
+  name                = "core"
+  environment         = "dev"
+  label_order         = ["name", "environment", "location"]
   resource_group_name = module.resource_group.resource_group_name
   location            = module.resource_group.resource_group_location
-  address_spaces      = ["10.30.0.0/22"]
+  address_spaces      = ["10.0.0.0/16"]
 }
 
 ##-----------------------------------------------------------------------------
@@ -40,25 +34,17 @@ module "vnet" {
 ## Subnet to which network security group will be attached.
 ##-----------------------------------------------------------------------------
 module "subnet" {
-  source               = "clouddrove/subnet/azure"
-  version              = "1.2.1"
-  name                 = local.name
-  environment          = local.environment
+  source               = "terraform-az-modules/subnet/azure"
+  version              = "1.0.0"
+  environment          = "dev"
+  label_order          = ["name", "environment", "location"]
   resource_group_name  = module.resource_group.resource_group_name
   location             = module.resource_group.resource_group_location
   virtual_network_name = module.vnet.vnet_name
-  # Subnet Configuration
-  subnet_names    = ["subnet"]
-  subnet_prefixes = ["10.30.0.0/24"]
-  # routes
-  enable_route_table = true
-  route_table_name   = "default-subnet"
-  # routes
-  routes = [
+  subnets = [
     {
-      name           = "rt-test"
-      address_prefix = "0.0.0.0/0"
-      next_hop_type  = "Internet"
+      name            = "subnet1"
+      subnet_prefixes = ["10.0.1.0/24"]
     }
   ]
 }
@@ -68,17 +54,15 @@ module "subnet" {
 ## Log Analytics workspace in which network security group diagnostic setting logs will be received.
 ##-----------------------------------------------------------------------------
 module "log-analytics" {
-  source                           = "clouddrove/log-analytics/azure"
-  version                          = "2.0.0"
-  name                             = local.name
-  environment                      = local.environment
-  label_order                      = local.label_order
-  create_log_analytics_workspace   = true
-  resource_group_name              = module.resource_group.resource_group_name
-  log_analytics_workspace_location = module.resource_group.resource_group_location
-
-  #### diagnostic setting
-  log_analytics_workspace_id = module.log-analytics.workspace_id
+  source                      = "terraform-az-modules/log-analytics/azure"
+  version                     = "1.0.0"
+  name                        = "core"
+  environment                 = "dev"
+  label_order                 = ["name", "environment", "location"]
+  log_analytics_workspace_sku = "PerGB2018"
+  resource_group_name         = module.resource_group.resource_group_name
+  location                    = module.resource_group.resource_group_location
+  log_analytics_workspace_id  = module.log-analytics.workspace_id
 }
 
 ##-----------------------------------------------------------------------------
@@ -87,8 +71,9 @@ module "log-analytics" {
 module "network_security_group" {
   depends_on               = [module.subnet]
   source                   = "../../"
-  name                     = local.name
-  environment              = local.environment
+  name                     = "core"
+  environment              = "dev"
+  label_order              = ["name", "environment", "location"]
   resource_group_name      = module.resource_group.resource_group_name
   location                 = module.resource_group.resource_group_location
   resource_position_prefix = true

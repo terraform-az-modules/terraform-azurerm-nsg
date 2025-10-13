@@ -19,11 +19,10 @@ module "labels" {
 ##-----------------------------------------------------------------------------
 resource "azurerm_network_security_group" "nsg" {
   count               = var.enabled ? 1 : 0
-  name                = format(var.resource_position_prefix ? "nsg-%s" : "%s-nsg", local.name)
+  name                = var.resource_position_prefix ? format("nsg-%s", local.name) : format("%s-nsg", local.name)
   resource_group_name = var.resource_group_name
   location            = var.location
   tags                = module.labels.tags
-
   timeouts {
     create = var.create
     update = var.update
@@ -53,7 +52,6 @@ resource "azurerm_network_security_rule" "inbound" {
   destination_port_range       = lookup(each.value, "destination_port_range", null) == "*" ? "*" : null
   destination_port_ranges      = lookup(each.value, "destination_port_range", "*") == "*" ? null : split(",", each.value.destination_port_range)
   description                  = lookup(each.value, "description", null)
-
   timeouts {
     create = var.create
     update = var.update
@@ -83,7 +81,6 @@ resource "azurerm_network_security_rule" "outbound" {
   destination_port_range       = lookup(each.value, "destination_port_range", null) == "*" ? "*" : null
   destination_port_ranges      = lookup(each.value, "destination_port_range", "*") == "*" ? null : split(",", each.value.destination_port_range)
   description                  = lookup(each.value, "description", null)
-
   timeouts {
     create = var.create
     update = var.update
@@ -92,13 +89,12 @@ resource "azurerm_network_security_rule" "outbound" {
   }
 }
 
-
 ##-----------------------------------------------------------------------------
 # NSG Flow Logs – Enables logging of ingress and egress IP traffic for monitoring
 ##-----------------------------------------------------------------------------
 resource "azurerm_network_watcher_flow_log" "nsg_flow_logs" {
   count                = var.enabled && var.enable_flow_logs ? 1 : 0
-  name                 = format(var.resource_position_prefix ? "flow-logs-%s" : "%s-flow-logs", local.name)
+  name                 = var.resource_position_prefix ? format("flow-logs-%s", local.name) : format("%s-flow-logs", local.name)
   enabled              = var.enabled
   version              = var.flow_log_version
   network_watcher_name = var.network_watcher_name
@@ -126,14 +122,13 @@ resource "azurerm_network_watcher_flow_log" "nsg_flow_logs" {
 ##-----------------------------------------------------------------------------
 resource "azurerm_monitor_diagnostic_setting" "nsg_diagnostic" {
   count                          = var.enabled && var.enable_diagnostic ? 1 : 0
-  name                           = format(var.resource_position_prefix ? "nsg-diagnostic-log-%s" : "%s-nsg-diagnostic-log", local.name)
+  name                           = var.resource_position_prefix ? format("nsg-diagnostic-log-%s", local.name) : format("%s-nsg-diagnostic-log", local.name)
   target_resource_id             = azurerm_network_security_group.nsg[0].id
   storage_account_id             = var.flow_log_storage_account_id
   eventhub_name                  = var.eventhub_name
   eventhub_authorization_rule_id = var.eventhub_authorization_rule_id
   log_analytics_workspace_id     = var.log_analytics_workspace_id
   log_analytics_destination_type = var.log_analytics_destination_type
-
   dynamic "enabled_log" {
     for_each = var.logs
     content {
@@ -141,7 +136,6 @@ resource "azurerm_monitor_diagnostic_setting" "nsg_diagnostic" {
       category       = lookup(enabled_log.value, "category", null)
     }
   }
-
   lifecycle {
     ignore_changes = [log_analytics_destination_type]
   }
