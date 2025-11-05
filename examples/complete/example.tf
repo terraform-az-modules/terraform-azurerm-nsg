@@ -13,8 +13,8 @@ locals {
 ## Resource group in which all resources will be deployed.
 ##-----------------------------------------------------------------------------
 module "resource_group" {
-  source      = "clouddrove/resource-group/azure"
-  version     = "1.0.2"
+  source      = "terraform-az-modules/resource-group/azurerm"
+  version     = "1.0.3"
   name        = local.name
   environment = local.environment
   label_order = local.label_order
@@ -26,8 +26,8 @@ module "resource_group" {
 ##-----------------------------------------------------------------------------
 module "vnet" {
   depends_on          = [module.resource_group]
-  source              = "clouddrove/vnet/azure"
-  version             = "1.0.4"
+  source              = "terraform-az-modules/vnet/azurerm"
+  version             = "1.0.3"
   name                = local.name
   environment         = local.environment
   resource_group_name = module.resource_group.resource_group_name
@@ -40,8 +40,8 @@ module "vnet" {
 ## Subnet to which network security group will be attached.
 ##-----------------------------------------------------------------------------
 module "subnet" {
-  source               = "clouddrove/subnet/azure"
-  version              = "1.2.1"
+  source               = "terraform-az-modules/subnet/azurerm"
+  version              = "1.0.1"
   name                 = local.name
   environment          = local.environment
   resource_group_name  = module.resource_group.resource_group_name
@@ -68,8 +68,8 @@ module "subnet" {
 ## Log Analytics workspace in which network security group diagnostic setting logs will be received.
 ##-----------------------------------------------------------------------------
 module "log-analytics" {
-  source                           = "clouddrove/log-analytics/azure"
-  version                          = "2.0.0"
+  source                           = "terraform-az-modules/log-analytics/azurerm"
+  version                          = "1.0.2"
   name                             = local.name
   environment                      = local.environment
   label_order                      = local.label_order
