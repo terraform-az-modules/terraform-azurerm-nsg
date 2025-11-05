@@ -12,7 +12,7 @@ name: Terraform azure network security group
 license: "APACHE"
 
 # Canonical GitHub repo
-github_repo: terraform-az-modules/terraform-azure-nsg
+github_repo: terraform-az-modules/terraform-azurerm-nsg
 
  Badges to display
 badges:
