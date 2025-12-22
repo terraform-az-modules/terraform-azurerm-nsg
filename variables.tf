@@ -154,6 +154,30 @@ variable "delete" {
   description = "Used when deleting the Resource Group."
 }
 
+variable "subnet_association" {
+  type        = bool
+  default     = false
+  description = "To create subnet association or not"
+}
+
+variable "nic_association" {
+  type        = bool
+  default     = false
+  description = "To create network_interface association or not"
+}
+
+variable "nic_ids" {
+  type        = list(string)
+  default     = []
+  description = "The ID of the nic. Changing this forces a new resource to be created."
+}
+
+variable "subnet_ids" {
+  type        = list(string)
+  default     = []
+  description = "The ID of the Subnet. Changing this forces a new resource to be created."
+}
+
 ##-----------------------------------------------------------------------------
 ## Diagnostic Settings
 ##-----------------------------------------------------------------------------
