@@ -157,25 +157,25 @@ variable "delete" {
 variable "subnet_association" {
   type        = bool
   default     = true
-  description = "To create subnet association or not"
+  description = "If true, the Network Security Group will be associated with the subnets specified in `subnet_ids`."
 }
 
 variable "nic_association" {
   type        = bool
   default     = false
-  description = "To create network_interface association or not"
+  description = "If true, the Network Security Group will be associated with the network interfaces specified in `nic_ids`."
 }
 
 variable "nic_ids" {
   type        = list(string)
   default     = []
-  description = "The ID of the nic. Changing this forces a new resource to be created."
+  description = "A list of Network Interface IDs to associate with the Network Security Group."
 }
 
 variable "subnet_ids" {
   type        = list(string)
   default     = []
-  description = "The ID of the Subnet. Changing this forces a new resource to be created."
+  description = "A list of Subnet IDs to associate with the Network Security Group."
 }
 
 ##-----------------------------------------------------------------------------
