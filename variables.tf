@@ -156,7 +156,7 @@ variable "delete" {
 
 variable "subnet_association" {
   type        = bool
-  default     = false
+  default     = true
   description = "To create subnet association or not"
 }
 
@@ -215,67 +215,14 @@ variable "log_analytics_destination_type" {
 ##-----------------------------------------------------------------------------
 ## Network Watcher Variables
 ##-----------------------------------------------------------------------------
-variable "enable_flow_logs" {
-  type        = bool
-  default     = false
-  description = "Flag to be set true when network security group flow logging feature is to be enabled."
-}
-
-variable "traffic_analytics_settings" {
-  type = object({
-    log_analytics_workspace_id          = string
-    workspace_region                    = string
-    log_analytics_workspace_resource_id = string
-    interval_in_minutes                 = number
-  })
-  default = {
-    log_analytics_workspace_id          = null
-    workspace_region                    = null
-    log_analytics_workspace_resource_id = null
-    interval_in_minutes                 = 60
-  }
-  description = "Settings for traffic analytics. This is used when enable_traffic_analytics is set to true."
-}
-
-variable "network_watcher_name" {
-  type        = string
-  default     = null
-  description = "The name of the Network Watcher. Changing this forces a new resource to be created."
-}
-
-variable "flow_log_storage_account_id" {
-  type        = string
-  default     = null
-  description = "The id of storage account in which flow logs will be received. Note: Currently, only standard-tier storage accounts are supported."
-}
-
-variable "flow_log_retention_policy_enabled" {
-  type        = bool
-  default     = false
-  description = "Boolean flag to enable/disable retention."
-}
-
-variable "flow_log_retention_policy_days" {
-  type        = number
-  default     = 100
-  description = "Flow log retention days must be between 0 and 365 for all configurations."
-}
-
-variable "enable_traffic_analytics" {
-  type        = bool
-  default     = false
-  description = "Boolean flag to enable/disable traffic analytics."
-}
-
-variable "flow_log_version" {
-  type        = number
-  default     = 1
-  description = " The version (revision) of the flow log. Possible values are 1 and 2."
-}
-
 variable "logs" {
   type        = list(map(string))
   default     = []
   description = "List of log categories. Defaults to all available."
 }
 
+variable "storage_account_id" {
+  type        = string
+  default     = null
+  description = "Storage ID for Log Analytics"
+}
