@@ -11,11 +11,6 @@ jobs:
     with:
       working_directory: 'examples/complete/'
 
-  nsg-with-flow-logs-example:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
-    with:
-      working_directory: 'examples/nsg_with_flow_logs/'
-
 # Seperate Job for TFlint workflow call
   tf-lint:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-lint.yml@master

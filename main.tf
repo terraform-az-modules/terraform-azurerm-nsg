@@ -92,33 +92,22 @@ resource "azurerm_network_security_rule" "outbound" {
   }
 }
 
+##-----------------------------------------------------------------------------
+## Below resource will associate above created network security group to subnet.
+##-----------------------------------------------------------------------------
+resource "azurerm_subnet_network_security_group_association" "nsg_subnet_association" {
+  count                     = var.enabled && var.subnet_association ? length(var.subnet_ids) : 0
+  subnet_id                 = element(var.subnet_ids, count.index)
+  network_security_group_id = azurerm_network_security_group.nsg[0].id
+}
 
 ##-----------------------------------------------------------------------------
-# NSG Flow Logs – Enables logging of ingress and egress IP traffic for monitoring
+## Below resource will associate above created network security group to network interface(nic).
 ##-----------------------------------------------------------------------------
-resource "azurerm_network_watcher_flow_log" "nsg_flow_logs" {
-  count                = var.enabled && var.enable_flow_logs ? 1 : 0
-  name                 = format(var.resource_position_prefix ? "flow-logs-%s" : "%s-flow-logs", local.name)
-  enabled              = var.enabled
-  version              = var.flow_log_version
-  network_watcher_name = var.network_watcher_name
-  resource_group_name  = var.resource_group_name
-  target_resource_id   = azurerm_network_security_group.nsg[0].id
-  storage_account_id   = var.flow_log_storage_account_id
-  retention_policy {
-    enabled = var.flow_log_retention_policy_enabled
-    days    = var.flow_log_retention_policy_days
-  }
-  dynamic "traffic_analytics" {
-    for_each = var.enable_traffic_analytics ? [var.traffic_analytics_settings] : []
-    content {
-      enabled               = true
-      workspace_id          = traffic_analytics.value.log_analytics_workspace_resource_id
-      workspace_region      = traffic_analytics.value.workspace_region
-      workspace_resource_id = traffic_analytics.value.log_analytics_workspace_id
-      interval_in_minutes   = traffic_analytics.value.interval_in_minutes
-    }
-  }
+resource "azurerm_network_interface_security_group_association" "nsg_nic_association" {
+  count                     = var.enabled && var.nic_association ? length(var.nic_ids) : 0
+  network_interface_id      = element(var.nic_ids, count.index)
+  network_security_group_id = azurerm_network_security_group.nsg[0].id
 }
 
 ##-----------------------------------------------------------------------------
@@ -128,7 +117,7 @@ resource "azurerm_monitor_diagnostic_setting" "nsg_diagnostic" {
   count                          = var.enabled && var.enable_diagnostic ? 1 : 0
   name                           = format(var.resource_position_prefix ? "nsg-diagnostic-log-%s" : "%s-nsg-diagnostic-log", local.name)
   target_resource_id             = azurerm_network_security_group.nsg[0].id
-  storage_account_id             = var.flow_log_storage_account_id
+  storage_account_id             = var.storage_account_id
   eventhub_name                  = var.eventhub_name
   eventhub_authorization_rule_id = var.eventhub_authorization_rule_id
   log_analytics_workspace_id     = var.log_analytics_workspace_id
