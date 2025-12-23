@@ -80,7 +80,7 @@ module "storage" {
     azurerm.dns_sub  = azurerm.peer
   }
   source               = "clouddrove/storage/azure"
-  version              = "1.1.1"
+  version              = "1.2.1"
   name                 = "core"
   environment          = "dev"
   resource_group_name  = module.resource_group.resource_group_name
