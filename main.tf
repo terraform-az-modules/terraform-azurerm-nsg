@@ -48,7 +48,7 @@ resource "azurerm_network_security_rule" "inbound" {
   source_address_prefixes      = lookup(each.value, "source_address_prefixes", null) // to be passed when 2 or more but not all address has to be passed
   source_port_range            = lookup(each.value, "source_port_range", "*") == "*" ? "*" : null
   source_port_ranges           = lookup(each.value, "source_port_range", "*") == "*" ? null : split(",", each.value.source_port_range)
-  destination_address_prefix   = lookup(each.value, "destination_address_prefix", "*")    // To be passed when only one source address or all address has to be passed or tag has to be passed
+  destination_address_prefix   = lookup(each.value, "destination_address_prefix", null)   // Explicit destination required; no wildcard fallback
   destination_address_prefixes = lookup(each.value, "destination_address_prefixes", null) // to be passed when 2 or more but not all address has to be passed
   destination_port_range       = lookup(each.value, "destination_port_range", null) == "*" ? "*" : null
   destination_port_ranges      = lookup(each.value, "destination_port_range", "*") == "*" ? null : split(",", each.value.destination_port_range)
@@ -78,7 +78,7 @@ resource "azurerm_network_security_rule" "outbound" {
   source_address_prefixes      = lookup(each.value, "source_address_prefixes", null) // to be passed when 2 or more but not all address has to be passed
   source_port_range            = lookup(each.value, "source_port_range", "*") == "*" ? "*" : null
   source_port_ranges           = lookup(each.value, "source_port_range", "*") == "*" ? null : split(",", each.value.source_port_range)
-  destination_address_prefix   = lookup(each.value, "destination_address_prefix", "*")    // To be passed when only one source address or all address has to be passed or tag has to be passed
+  destination_address_prefix   = lookup(each.value, "destination_address_prefix", null)   // Explicit destination required; no wildcard fallback
   destination_address_prefixes = lookup(each.value, "destination_address_prefixes", null) // to be passed when 2 or more but not all address has to be passed
   destination_port_range       = lookup(each.value, "destination_port_range", null) == "*" ? "*" : null
   destination_port_ranges      = lookup(each.value, "destination_port_range", "*") == "*" ? null : split(",", each.value.destination_port_range)
