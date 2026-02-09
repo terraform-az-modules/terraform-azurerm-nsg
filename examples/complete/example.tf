@@ -132,7 +132,7 @@ module "network_security_group" {
       priority                   = 102
       access                     = "Allow"
       protocol                   = "*"
-      source_address_prefix      = "0.0.0.0/0"
+      source_address_prefix      = "VirtualNetwork"
       source_port_range          = "80,443"
       destination_address_prefix = "VirtualNetwork"
       destination_port_range     = "22"
