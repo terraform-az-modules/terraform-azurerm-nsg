@@ -13,7 +13,7 @@ provider "azurerm" {
 ##-----------------------------------------------------------------------------
 module "resource_group" {
   source      = "terraform-az-modules/resource-group/azurerm"
-  version     = "1.0.3"
+  version     = "1.0.4"
   name        = "core"
   environment = "dev"
   location    = "centralus"
