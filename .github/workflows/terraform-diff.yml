@@ -9,6 +9,7 @@ on:
 
 jobs:
   complete-example:
+    if: github.actor != 'dependabot[bot]'
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-diff-checks.yml@v2
     with:
       provider: 'azurerm'
