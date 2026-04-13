@@ -31,3 +31,17 @@ jobs:
       #  Generate README
       - name: Generate README
         run: make readme
+
+      # 🔥 Commit only if changed
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+          if git diff --quiet; then
+            echo "No changes"
+          else
+            git add README.md
+            git commit -m "docs: update README"
+            git push
+          fi
