@@ -60,4 +60,4 @@ jobs:
     secrets:
       TOKEN: ${{ secrets.TOKEN }}   # ⚠️ use PAT, not GITHUB_TOKEN
       # TEMPORARILY REMOVE SLACK to avoid crash
-      # SLACK_WEBHOOK_TERRAFORM: ${{ secrets.SLACK_WEBHOOK_TERRAFORM }}
+      SLACK_WEBHOOK_TERRAFORM: ${{ secrets.SLACK_WEBHOOK_TERRAFORM }}
