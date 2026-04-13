@@ -12,4 +12,3 @@ jobs:
     uses: clouddrove/github-shared-workflows/.github/workflows/readme.yml@master
     secrets:
       TOKEN : ${{ secrets.GITHUB }}
-      SLACK_WEBHOOK_TERRAFORM: ${{ secrets.SLACK_WEBHOOK_TERRAFORM }}
