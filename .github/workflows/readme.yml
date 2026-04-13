@@ -86,7 +86,7 @@ jobs:
       # 🔥 Clone genie at correct location
       - name: Clone genie
         run: |
-          git clone https://x-access-token:${{ secrets.TOKEN }}@github.com/clouddrove/genie.git /home/runner/genie
+          git clone https://${{ secrets.GENIE_TOKEN }}@github.com/clouddrove/genie.git /home/runner/genie
 
       # 🔍 Debug (optional, remove later)
       - name: Debug paths
