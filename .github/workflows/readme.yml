@@ -1,53 +1,3 @@
-# name: Readme Workflow
-
-# on:
-#   push:
-#     branches:
-#       - test/readme
-#   workflow_dispatch:
-
-# permissions:
-#   contents: write
-
-# jobs:
-#   readme:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout repo
-#         uses: actions/checkout@v3
-
-#       #  Clone genie at correct location
-#       - name: Clone genie
-#         run: |
-#           git clone https://${{ secrets.GENIE_TOKEN }}@github.com/clouddrove/genie.git /home/runner/genie
-
-#       #  Debug (optional, remove later)
-#       - name: Debug paths
-#         run: |
-#           pwd
-#           ls -la /home/runner/genie
-
-#       #  Generate README
-#       - name: Generate README
-#         run: make readme
-
-#       # 🔥 Commit only if changed
-#       - name: Commit changes
-#         run: |
-#           git config user.name "github-actions"
-#           git config user.email "actions@github.com"
-
-#           if git diff --quiet; then
-#             echo "No changes"
-#           else
-#             git add README.md
-#             git commit -m "docs: update README"
-#             git push
-#           fi
-
-
-
 name: Readme Workflow
 
 on:
@@ -69,7 +19,7 @@ jobs:
 
       - name: Clone genie
         run: |
-          git clone https://${{ secrets.GENIE_TOKEN }}@github.com/clouddrove/genie.git /home/runner/genie
+          git clone https://${{ secrets.GENIE_TOKEN }}git@github.com:terraform-az-modules/genie.git /home/runner/genie
 
       # OPTIONAL: Install dependencies if needed
       - name: Setup environment
