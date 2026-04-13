@@ -2,7 +2,7 @@ name: Readme Workflow
 on:
   push:
     branches:
-      - master
+      - test/readme
     paths-ignore:
       - 'README.md'
       - 'docs/**'
