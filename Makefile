@@ -1,6 +1,5 @@
 GENIE_PATH ?= $(shell pwd)/../../../genie
 
-# fallback for local dev
 ifeq ($(wildcard $(GENIE_PATH)),)
 GENIE_PATH := $(shell pwd)/genie
 endif

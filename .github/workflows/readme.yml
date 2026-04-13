@@ -17,17 +17,17 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      # 🔥 Clone genie at correct location
+      #  Clone genie at correct location
       - name: Clone genie
         run: |
           git clone https://${{ secrets.GENIE_TOKEN }}@github.com/clouddrove/genie.git /home/runner/genie
 
-      # 🔍 Debug (optional, remove later)
+      #  Debug (optional, remove later)
       - name: Debug paths
         run: |
           pwd
           ls -la /home/runner/genie
 
-      # 🔥 Generate README
+      #  Generate README
       - name: Generate README
         run: make readme
