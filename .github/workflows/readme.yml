@@ -1,3 +1,53 @@
+# name: Readme Workflow
+
+# on:
+#   push:
+#     branches:
+#       - test/readme
+#   workflow_dispatch:
+
+# permissions:
+#   contents: write
+
+# jobs:
+#   readme:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v3
+
+#       #  Clone genie at correct location
+#       - name: Clone genie
+#         run: |
+#           git clone https://${{ secrets.GENIE_TOKEN }}@github.com/clouddrove/genie.git /home/runner/genie
+
+#       #  Debug (optional, remove later)
+#       - name: Debug paths
+#         run: |
+#           pwd
+#           ls -la /home/runner/genie
+
+#       #  Generate README
+#       - name: Generate README
+#         run: make readme
+
+#       # 🔥 Commit only if changed
+#       - name: Commit changes
+#         run: |
+#           git config user.name "github-actions"
+#           git config user.email "actions@github.com"
+
+#           if git diff --quiet; then
+#             echo "No changes"
+#           else
+#             git add README.md
+#             git commit -m "docs: update README"
+#             git push
+#           fi
+
+
+
 name: Readme Workflow
 
 on:
@@ -14,34 +64,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      #  Clone genie at correct location
       - name: Clone genie
         run: |
           git clone https://${{ secrets.GENIE_TOKEN }}@github.com/clouddrove/genie.git /home/runner/genie
 
-      #  Debug (optional, remove later)
-      - name: Debug paths
+      # OPTIONAL: Install dependencies if needed
+      - name: Setup environment
         run: |
-          pwd
-          ls -la /home/runner/genie
+          sudo apt-get update
+          sudo apt-get install -y make
 
-      #  Generate README
       - name: Generate README
-        run: make readme
-
-      # 🔥 Commit only if changed
-      - name: Commit changes
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          make readme
 
-          if git diff --quiet; then
-            echo "No changes"
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+          git add README.md
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
           else
-            git add README.md
             git commit -m "docs: update README"
-            git push
+            git push origin HEAD:${{ github.ref_name }}
           fi
