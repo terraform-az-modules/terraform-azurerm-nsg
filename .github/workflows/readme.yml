@@ -21,6 +21,7 @@ jobs:
         run: |
           git clone https://${{ secrets.GENIE_TOKEN }}@github.com/terraform-az-modules/genie.git /home/runner/genie
 
+      # OPTIONAL: Install dependencies if needed
       - name: Setup environment
         run: |
           sudo apt-get update
