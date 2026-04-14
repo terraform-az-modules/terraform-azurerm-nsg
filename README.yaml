@@ -10,7 +10,7 @@ about: |-
 
 license: "APACHE"
 
-github_repo: clouddrove/terraform-azurerm-nsg
+github_repo: terraform-az-modules/terraform-azurerm-nsg
 
 badges:
   - name: "Terraform"
