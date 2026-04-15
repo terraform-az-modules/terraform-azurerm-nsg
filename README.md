@@ -1,4 +1,5 @@
-https://github.com/terraform-az-modules/terraform-azurerm-nsg/blob/test/readme/README.md
+<img width="1441" height="897" alt="image" src="https://github.com/user-attachments/assets/67c1b30e-6196-45a1-a122-88cba74518b3" />
+
 <h1 align="center">
     Terraform Azure Network Security Group
 
