@@ -3,7 +3,7 @@ name: Terraform Azure Network Security Group
 intro: |-
   With our comprehensive DevOps toolkit - streamline operations, automate workflows, enhance collaboration and deploy with confidence.
 
-badges_text: "Latest Release | tfsec | Licence | Changelog"
+badges_text: "Latest Release | tfsec | License | Changelog"
 
 about: |-
   Terraform module to create and manage Network Security Groups (NSG) on Azure.
@@ -21,7 +21,7 @@ badges:
     image: "https://img.shields.io/badge/License-APACHE-blue.svg"
     url: "LICENSE.md"
 
-prerequesties:
+prerequisites:
   - name: Terraform
     url: https://learn.hashicorp.com/terraform/getting-started/install.html
     version: ">= 1.6.6"
