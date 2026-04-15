@@ -43,10 +43,10 @@ This module includes Terraform code, examples, and automation tests to help you 
 
 This table contains both Prerequisites and Providers:
 
-| Description   | Name                                       | Version   |
-|:-------------:|:-------------------------------------------:|:---------:|
+| Description | Name | Version |
+|-------------|------|---------|
 
-| **Provider** | [azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest) | >= 4.0 |
+| Provider | [azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest) | >= 4.0 |
 
 
 
@@ -108,7 +108,3 @@ We have [**50+ Azure Terraform modules**](https://github.com/orgs/terraform-az-m
 
 
 
-<hr />
-<p align="center">
-  Maintained by <a href="https://github.com/clouddrove">CloudDrove</a>
-</p>
