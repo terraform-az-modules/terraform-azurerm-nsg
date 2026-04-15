@@ -45,12 +45,7 @@ This table contains both Prerequisites and Providers:
 
 | Description | Name | Version |
 |-------------|------|---------|
-
-
-
 | Provider | azurerm | >= 4.0 |
-
-
 
 
 
