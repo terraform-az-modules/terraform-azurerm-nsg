@@ -44,10 +44,7 @@ This module includes Terraform code, examples, and automation tests to help you 
 This table contains both Prerequisites and Providers:
 
 | Description | Name | Version |
-|-------------|------|---------|
-
-| Provider | [azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest) | >= 4.0 |
-
+|-------------|------|---------|| Prerequisite | [Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html) | >= 1.6.6 || Provider | [azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest) | >= 4.0 |
 
 
 
