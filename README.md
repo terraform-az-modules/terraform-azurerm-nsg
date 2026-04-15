@@ -47,6 +47,10 @@ This table contains both Prerequisites and Providers:
 |-------------|------|---------|
 
 
+| Prerequisite | Terraform | >= 1.6.6 |
+
+
+
 
 | Provider | azurerm | >= 4.0 |
 
