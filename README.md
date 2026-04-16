@@ -45,8 +45,10 @@ This table contains both Prerequisites and Providers:
 
 | Description | Name | Version |
 |-------------|------|---------|
-| Prerequisite | Terraform | >= 1.6.6 |
+| Prerequisite | Terraform | >= 1.10.0 |
 | Provider | azurerm | >= 4.0 |
+
+---
 
 
 
@@ -83,6 +85,8 @@ Track module updates, improvements, and breaking changes across versions.
 
 📌 [View Changelog](CHANGELOG.md)
 
+---
+
 
 ## ✨ Contributors
 
@@ -104,11 +108,15 @@ Big thanks to our contributors for elevating our project with their dedication a
 
 **Note:** All contributors must follow the [Conventional Commits](https://www.conventionalcommits.org) specification for commit messages to ensure consistency and better versioning.
 
+---
+
 ## 🚀 Our Accomplishment
 
 We have [**50+ Azure Terraform modules**](https://github.com/orgs/terraform-az-modules/repositories) 🙌. You could consider them finished, but, with enthusiasts like yourself, we are able to ever improve them, so we call our status - improvement in progress.
 
 - [**Terraform Module Registry**](https://registry.terraform.io/namespaces/terraform-az-modules): Discover our Terraform modules here.
+
+---
 
 ## Notes
 
@@ -116,6 +124,8 @@ We have [**50+ Azure Terraform modules**](https://github.com/orgs/terraform-az-m
 - Always reference a stable version using Git tags or official releases.
 - Using tagged versions ensures consistency, stability, and reproducible deployments.
 - Avoid consuming unversioned or in-progress code.
+
+---
 
 
 
