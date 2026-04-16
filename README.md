@@ -57,6 +57,13 @@ This table contains both Prerequisites and Providers:
 
 📌 For additional usage examples, check the complete list under [`examples/`](./examples) directory.
 
+## Notes
+
+- Do not use the `master` (or `main`) branch for production deployments.
+- Always reference a stable version using Git tags or official releases.
+- Using tagged versions ensures consistency, stability, and reproducible deployments.
+- Avoid consuming unversioned or in-progress code.
+
 
 
 ## Inputs and Outputs
@@ -80,6 +87,8 @@ Big thanks to our contributors for elevating our project with their dedication a
     <img src="https://contrib.rocks/image?repo=terraform-az-modules/terraform-azurerm-nsg" />
   </a>
 </div>
+
+- **Note**: All contributors must follow the [Conventional Commits](https://www.conventionalcommits.org) specification for commit messages to ensure consistency and better versioning.
 
  If you're considering contributing to our project, here are a few quick guidelines that we have been following (Got a suggestion? We are all ears!):
 
