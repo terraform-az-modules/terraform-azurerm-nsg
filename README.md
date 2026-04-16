@@ -45,6 +45,7 @@ This table contains both Prerequisites and Providers:
 
 | Description | Name | Version |
 |-------------|------|---------|
+| Prerequisite | Terraform | >= 1.6.6 |
 | Provider | azurerm | >= 4.0 |
 
 
@@ -88,8 +89,6 @@ Big thanks to our contributors for elevating our project with their dedication a
   </a>
 </div>
 
-- **Note**: All contributors must follow the [Conventional Commits](https://www.conventionalcommits.org) specification for commit messages to ensure consistency and better versioning.
-
  If you're considering contributing to our project, here are a few quick guidelines that we have been following (Got a suggestion? We are all ears!):
 
 - **Fork the Repository:** Create a new branch for your feature or bug fix.
@@ -97,6 +96,8 @@ Big thanks to our contributors for elevating our project with their dedication a
 - **Clear Commit Messages:** Write clear and concise commit messages to facilitate understanding.
 - **Thorough Testing:** Test your changes thoroughly before submitting a pull request.
 - **Documentation Updates:** Include relevant documentation updates if your changes impact it.
+
+- **Note**: All contributors must follow the [Conventional Commits](https://www.conventionalcommits.org) specification for commit messages to ensure consistency and better versioning.
 
 ## 🚀 Our Accomplishment
 
