@@ -52,24 +52,36 @@ This table contains both Prerequisites and Providers:
 
 
 
-## Examples
+## 📦 Examples
 
-**IMPORTANT:** Since the master branch used in source varies based on new modifications, we recommend using the [release versions](https://github.com/terraform-az-modules/terraform-azurerm-nsg/releases).
+> ⚠️ **Important:** Avoid using the `master` branch directly, as it may include unstable changes. Always use stable [release versions](https://github.com/terraform-az-modules/terraform-azurerm-nsg/releases).
 
-📌 For additional usage examples, check the complete list under [`examples/`](./examples) directory.
+Explore real-world usage scenarios and implementation patterns in the [`examples/`](./examples/) directory:
 
+- Complete deployment setups
+- Modular usage patterns
+- Best practice configurations
 
-
-## Inputs and Outputs
-
-Refer to complete documentation: [here](docs/io.md)
-
-
+---
 
 
-## 📑 Changelog
 
-Refer [here](CHANGELOG.md).
+## 📥 Inputs and Outputs
+
+Detailed input variables and output values are documented for easier integration and day-to-day usage.
+
+📘 [View full documentation](docs/io.md)
+
+---
+
+
+
+
+## 📝 Changelog
+
+Track module updates, improvements, and breaking changes across versions.
+
+📌 [View Changelog](CHANGELOG.md)
 
 
 ## ✨ Contributors
