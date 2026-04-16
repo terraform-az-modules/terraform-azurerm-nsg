@@ -45,7 +45,7 @@ This table contains both Prerequisites and Providers:
 
 | Description | Name | Version |
 |-------------|------|---------|
-| Prerequisite | Terraform | >= 1.10.0 |
+| Prerequisite | Terraform | >= 1.1.0 |
 | Provider | azurerm | >= 4.0 |
 
 ---
