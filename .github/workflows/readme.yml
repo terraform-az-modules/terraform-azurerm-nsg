@@ -19,7 +19,7 @@ jobs:
 
       - name: Clone genie
         run: |
-          git clone https://${{ secrets.GENIE_TOKEN }}@github.com/terraform-az-modules/genie.git /home/runner/genie
+          git clone https://${{ secrets.GENIE_TOKEN }}@github.com/karantolambiya-cd/testing-repo.git /home/runner/testing-repo
 
       - name: Setup environment
         run: |
