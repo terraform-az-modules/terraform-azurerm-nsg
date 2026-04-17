@@ -17,10 +17,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Clone genie
-        run: |
-            git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/terraform-az-modules/genie.git /home/runner/genie
-            
+      # - name: Clone genie
+      #   run: |
+      #       git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/terraform-az-modules/genie.git /home/runner/genie
+
+      - name: Checkout genie repo
+        uses: actions/checkout@v4
+        with:
+           repository: terraform-az-modules/genie
+           token: ${{ secrets.GENIE_TOKEN }}
+           path: genie
+
       - name: Setup environment
         run: |
           sudo apt-get update
