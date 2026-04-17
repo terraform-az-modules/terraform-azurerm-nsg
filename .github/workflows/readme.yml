@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
            repository: terraform-az-modules/genie
-           token: ${{ GITHUB_TOKEN }}
+           token: ${{ secrets.GITHUB_TOKEN}}
            path: genie
 
       - name: Setup environment
@@ -50,5 +50,4 @@ jobs:
             git commit -m "docs: update README"
             git push origin HEAD:${{ github.ref_name }}
           fi
-    #testing 
    
