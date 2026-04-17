@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
            repository: terraform-az-modules/genie
-           token: ${{ secrets.GENIE_TOKEN }}
+           token: ${{ env.GH_TOKEN }}
            path: genie
 
       - name: Setup environment
