@@ -19,8 +19,8 @@ jobs:
 
       - name: Clone genie
         run: |
-          git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/terraform-az-modules/genie.git /home/runner/genie
-
+            git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/terraform-az-modules/genie.git /home/runner/genie
+            
       - name: Setup environment
         run: |
           sudo apt-get update
