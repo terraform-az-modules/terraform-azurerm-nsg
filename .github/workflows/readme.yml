@@ -17,16 +17,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # - name: Clone genie
-      #   run: |
-      #       git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/terraform-az-modules/genie.git /home/runner/genie
-
-      - name: Checkout genie repo
-        uses: actions/checkout@v4
-        with:
-           repository: terraform-az-modules/genie
-           token: ${{ secrets.GITHUB_TOKEN}}
-           path: genie
+      - name: Clone genie
+        run: |
+          git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/terraform-az-modules/genie.git /home/runner/genie
 
       - name: Setup environment
         run: |
@@ -50,4 +43,5 @@ jobs:
             git commit -m "docs: update README"
             git push origin HEAD:${{ github.ref_name }}
           fi
+    
    
